@@ -2,6 +2,7 @@ module 10042025
 
 go 1.23.4
 
+toolchain go1.23.7
 
 require (
 	github.com/coalaura/mistral v0.0.2
