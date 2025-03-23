@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// docker run --name my_postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=mypoatgres -p 5432:5432 -d postgres
+// docker run --name my_postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=mypostgres -p 5432:5432 -d postgres
 
 // @title           THE PATH TO A DREAM API
 // @version         1.0
