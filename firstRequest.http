@@ -1,0 +1,31 @@
+POST http://localhost:8080/registration/
+Content-Type: application/json
+
+{
+  "username": "TEST",
+  "password": "test"
+}
+
+###
+POST http://localhost:8080/login/
+Content-Type: application/json
+
+{
+"username": "TEST",
+"password": "test"
+}
+###
+
+POST http://localhost:8080/chat/
+Content-Type: application/json
+
+{
+  "userID": 1,
+  "goal": "Хочу улучшить навыки программирования",
+  "message": ["TEST", "Хочу", "Долгосрочно", "TEST", "Хочу", "Долгосрочно", "TEST", "bshb"]
+}
+
+
+###
+
+

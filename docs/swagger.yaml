@@ -1,0 +1,187 @@
+host: 185.104.114.234:8080
+info:
+  contact: {}
+  description: API для мобильного приложения.
+  title: THE PATH TO A DREAM API
+  version: "1.0"
+paths:
+  /chat/:
+    post:
+      consumes:
+      - application/json
+      description: Отправляет данные в AI и сохраняет диалог в БД
+      parameters:
+      - description: Запрос AI, message содержит 8 значений!
+        in: body
+        name: request
+        required: true
+        schema:
+          properties:
+            goal:
+              type: string
+            message:
+              items:
+                type: string
+              type: array
+            userID:
+              type: integer
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: AI response
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid request data
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Error response Mistral AI
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Отправка запроса в AI
+      tags:
+      - ai
+  /login/:
+    post:
+      consumes:
+      - application/json
+      description: Проверяет учетные данные пользователя и возвращает статус входа
+      parameters:
+      - description: Данные для входа
+        in: body
+        name: request
+        required: true
+        schema:
+          properties:
+            password:
+              type: string
+            username:
+              type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User logged successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid request data
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Invalid credentials
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Авторизация пользователя
+      tags:
+      - auth
+  /registration/:
+    post:
+      consumes:
+      - application/json
+      description: Регистрирует нового пользователя в системе
+      parameters:
+      - description: Данные нового пользователя
+        in: body
+        name: request
+        required: true
+        schema:
+          properties:
+            password:
+              type: string
+            username:
+              type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User registered successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid request data
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: User already exists
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Регистрация пользователя
+      tags:
+      - auth
+  /user/:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает информацию о пользователе по имени
+      parameters:
+      - description: Имя пользователя
+        in: query
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User information
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Error search User
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получение информации о пользователе
+      tags:
+      - users
+  /users/:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает список всех пользователей и их диалоги
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of users
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "400":
+          description: Error find Users
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получение списка пользователей
+      tags:
+      - users
+swagger: "2.0"
