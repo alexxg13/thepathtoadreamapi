@@ -4,7 +4,7 @@ FROM golang:1.23.4 AS builder
 WORKDIR /app
 
 # Копируем файлы проекта и зависимости
-COPY ../go.mod go.sum ./
+COPY go.mod go.sum ./
 RUN go mod download
 
 COPY .. .
